@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nusa Academy </title>
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="../static/images/ncc.png">
+    <link rel="stylesheet" href="../static/stylecopy.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/Footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+    <script src="../static/Homescript.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../static/Myhome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        //initialize wow.js
+        document.addEventListener('DOMContentLoaded', function () {
+            new WOW().init();
+            console.log('wow.js initialized');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Bootstrap components
+            var dropdownTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+            var dropdownList = dropdownTriggerList.map(function (dropdownTriggerEl) {
+                return new bootstrap.Dropdown(dropdownTriggerEl);
+            });
+        });
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Define the slide-in animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the slide-in animation to each box */
+        .box {
+            animation: slideIn 4s ease-out;
+            /* Adjust the duration and timing function as needed */
+        }
+
+        .content,
+        .btn {
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Gaya normal */
+        .btn-primary-gradient {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #fff;
+        }
+
+        /* Gaya hover */
+        .btn-primary-gradient:hover {
+            background: #fff;
+            color: #fff
+        }
+
+        /* Ukuran font tambahan */
+        .btn-primary-gradient {
+            font-size: 18px;
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+        }
+
+        .logout-button {
+            border-radius: 0;
+        }
+
+        .rounded {
+            border-radius: 0px;
+        }
+
+        #logout-button {
+            border-radius: 0px;
+        }
+
+        .nav-links li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links li a {
+            text-align: center;
+            display: block;
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+        }
+
+        .dropdown-menu{
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-weight: 700;
+        }
+
+        .dropdown-menu li a{
+            font-weight: bolder;
+            
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+
+    </div>
+
+    <header>
+        {% if user_info and user_info.role == 'admin' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item" href="/administrator/dashboard/{{ user_info.username }}">Dashboard</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if user_info and user_info.role == 'member' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item" href="/profil/{{ user_info.username }}">Pengaturan Profil</a></li>
+                        <li><a class="dropdown-item" href="/pembelianku">Pembelianku</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+                <!-- <li><a href="#" class="fw-bolder"> {{ user_info.username }} </a></li> -->
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if not user_info %}
+        <a href="/home" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/login" class="fw-bolder">Mentor</a></li>
+                <li><a href="/login" class="fw-bolder">Matery</a></li>
+                <li><a href="/login" class="fw-bolder">Forum</a></li>
+                <li><a href="/login" class="fw-bolder">Contact</a></li>
+            </ul>
+
+            <a id="Login" href="/login"
+                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 fw-bolder">Login</a>
+        </nav>
+        {% endif %}
+
+    </header>
+
+
+    <!-- Home -->
+
+    <section class="home" id="home">
+
+        <video autoplay muted loop plays-inline class="back-video">
+            <source src="../static/images/backdrop.mp4">
+        </video>
+        <div class="content">
+            <h3 id="welcome">WELCOME TO Nusa Academy</h3>
+            <p>Nusa Academy adalah platform belajar daring yang menyediakan berbagai kursus di bidang pengembangan perangkat lunak. Sebagai pusat belajar online, Nusa Academy tidak hanya menawarkan beragam kursus berkualitas, tetapi juga memberikan ruang bagi komunitas pengguna untuk berdiskusi dan berbagi pengetahuan melalui forum diskusi.</p>
+
+            <a href="/login" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 fw-bolder">Get Started</a>
+        </div>
+
+
+
+    </section>
+
+    <!-- About Start -->
+    <div class="container-xxl py-5 about-this" id="about">
+        <div class="container py-5 px-lg-5">
+            <div class="row g-5 align-items-center">
+                <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="custom-h5 text-primary-gradient fw-bolder">About Nusa Academy</h5>
+                    <h1 class="custom-h1 mb-4">#1 Service for your Business</h1>
+                    <p class="custom-p mb-4">Welcome to Nusa Academy, your premier destination for cutting-edge services that empower your business in the digital realm. We take pride in being the go-to platform for businesses seeking top-notch solutions and comprehensive support to thrive in the dynamic landscape of technology.</p>
+                    <div class="row g-4 mb-4">
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="d-flex">
+                                <i class="fa fa-cogs fa-3x text-primary-gradient flex-shrink-0 mt-1"></i>
+                                <div class="ms-3">
+                                    <h2 class="mb-0 num" data-val="400">000</h2>
+                                    <p class="text-primary-gradient mb-0">Active Install</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
+                            <div class="d-flex">
+                                <i class="fa fa-comments fa-3x text-secondary-gradient flex-shrink-0 mt-1"></i>
+                                <div class="ms-3">
+                                    <h2 class="mb-0 num" data-val="200">000</h2>
+                                    <p class="text-secondary-gradient mb-0">Clients Reviews</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href=""
+                        class="btn btn-primary-gradient btn-read-more py-sm-3 px-4 px-sm-5 rounded-pill mt-3">Read
+                        More</a>
+                </div>
+                <div class="col-lg-6">
+                    <img class="img-fluid wow fadeInUp" data-wow-delay="0.5s" src="../static/images/about.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+    <!-- About -->
+
+    <section class="about" id="about">
+        <h1 class="heading">About Us</h1>
+        <div class="line"></div>
+
+        <div class="box-container">
+            <div class="box">
+                <i class="fas fa-magic"></i>
+                <h3>Nusa Academy</h3>
+                <p> Will Help You Magically.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Nusa Academy</h3>
+                <p>Strong Logic.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-delete-left"></i>
+                <h3>Nusa Academy</h3>
+                <p> Will Help you get out an Error .</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-satellite"></i>
+                <h3>Nusa Academy</h3>
+                <p> Will Makes you a Good Website .</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-wind"></i>
+                <h3>Nusa Academy</h3>
+                <p> Easy to Learn.</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-home-alt"></i>
+                <h3>Nusa Academy</h3>
+                <p>Family Friendly Mentor and Affordable Price.</p>
+            </div>
+    </section>
+
+    <div class="container-fluid fact bg-dark my-5 py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <i class="fa fa-check fa-2x text-white mb-3"></i>
+                    <span class="num" data-val="600">000</span>
+                    <p class="text-white mb-0">Hours Experience</p>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <i class="fa fa-users-cog fa-2x text-white mb-3"></i>
+                    <span class="num" data-val="15">000</span>
+                    <p class="text-white mb-0">Expert Person</p>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                    <i class="fa fa-users fa-2x text-white mb-3"></i>
+                    <span class="num" data-val="225">000</span>
+                    <p class="text-white mb-0">Satisfied Clients</p>
+                </div>
+                <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                    <i class="fa fa-wrench fa-2x text-white mb-3"></i>
+                    <span class="num" data-val="20">000</span>
+                    <p class="text-white mb-0">Compleate Projects</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if user_info and user_info.role == 'admin' %}
+    <!-- Pricing Start -->
+    <div class="container-xxl py-5" id="pricing">
+        <div class="container py-5 px-lg-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="text-primary-gradient fw-bolder">Pricing Plan</h5>
+                <h1 class="mb-5">Choose Your Plan</h1>
+            </div>
+            <div class="tab-class text-center pricing wow fadeInUp" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-center bg-primary-gradient rounded-pill mb-5">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="pill" href="#tab-1">Monthly</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" href="#tab-2">Yearly</button>
+                    </li>
+                </ul>
+                <div class="tab-content text-start">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Front-end Plan</h4>
+                                        <span>For Front-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>175k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Website</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Cross-browser
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi"
+                                            class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded border">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Back-End Plan</h4>
+                                        <span>For Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>200k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>PYTHON &
+                                                Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>FLASK</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>MongoDB</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>API</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi"
+                                            class="btn btn-secondary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Full-Stack Plan</h4>
+                                        <span>For Front-end and Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>300k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 CSS3 &
+                                                Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>PYTHON JQUERY &
+                                                Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap & Bulma
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Hosting & Deploy
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi"
+                                            class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane fade p-0">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Front-End</h4>
+                                        <span>For Front-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">RP</small>1750k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5 &
+                                                Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Layout</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span> Responsive & Interactive
+                                                Website
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi"
+                                            class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded border">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Back-End</h4>
+                                        <span>For Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>2000k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>Python & Javascript
+                                                Back-end</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Hosting & Deploy</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span> CRUD System
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Cross-browser
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi"
+                                            class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Full-Stack Plan</h4>
+                                        <span>For Front-end and Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>2700k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3 &&
+                                                Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5 &
+                                                Tailwind</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Layout</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Hosting & Deploy</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi"
+                                            class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing End -->
+    {% endif %}
+
+    {% if user_info and user_info.role == 'member' %}
+    <!-- Pricing Start -->
+    <div class="container-xxl py-5" id="pricing">
+        <div class="container py-5 px-lg-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="text-primary-gradient fw-bolder">Pricing Plan</h5>
+                <h1 class="mb-5">Choose Your Plan</h1>
+            </div>
+            <div class="tab-class text-center pricing wow fadeInUp" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-center bg-primary-gradient rounded-pill mb-5">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="pill" href="#tab-1">Monthly</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" href="#tab-2">Yearly</button>
+                    </li>
+                </ul>
+                <div class="tab-content text-start">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Front-end Plan</h4>
+                                        <span>For Front-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>175k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Website</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Cross-browser
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded border">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Back-End Plan</h4>
+                                        <span>For Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>200k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>PYTHON & Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>FLASK</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>MongoDB</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>API</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi" class="btn btn-secondary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Full-Stack Plan</h4>
+                                        <span>For Front-end and Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>300K<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5  CSS3 & Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>PYTHON  JQUERY & Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap & Bulma
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Hosting & Deploy
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane fade p-0">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Front-End</h4>
+                                        <span>For Front-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">RP</small>1750k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5 & Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Layout</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span> Responsive & Interactive
+                                                Website
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded border">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Back-End</h4>
+                                        <span>For Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>2000k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>Python & Javascript
+                                                Back-end</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Hosting & Deploy</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span> CRUD System
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Cross-browser
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Full-Stack Plan</h4>
+                                        <span>For Front-end and Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>2700k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3 && Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5 & Tailwind</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Layout</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Hosting & Deploy</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/materi" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing End -->
+    {% endif %}
+
+    {% if not user_info %}
+    <!-- Pricing Start -->
+    <div class="container-xxl py-5" id="pricing">
+        <div class="container py-5 px-lg-5">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h5 class="text-primary-gradient fw-bolder">Pricing Plan</h5>
+                <h1 class="mb-5">Choose Your Plan</h1>
+            </div>
+            <div class="tab-class text-center pricing wow fadeInUp" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-center bg-primary-gradient rounded-pill mb-5">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="pill" href="#tab-1">Monthly</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="pill" href="#tab-2">Yearly</button>
+                    </li>
+                </ul>
+                <div class="tab-content text-start">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Front-end Plan</h4>
+                                        <span>For Front-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>175k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Website</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Cross-browser
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/login" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded border">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Back-End Plan</h4>
+                                        <span>For Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>200k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>PYTHON & Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>FLASK</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>MongoDB</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>API</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/login" class="btn btn-secondary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Full-Stack Plan</h4>
+                                        <span>For Front-end and Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>300K<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Month</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5  CSS3 & Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>PYTHON  JQUERY & Javascript</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap & Bulma
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Hosting & Deploy
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/login" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane fade p-0">
+                        <div class="row g-4">
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Front-End</h4>
+                                        <span>For Front-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">RP</small>1750k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5 & Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Layout</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span> Responsive & Interactive
+                                                Website
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/login" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded border">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Back-End</h4>
+                                        <span>For Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>2000k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>Python & Javascript
+                                                Back-end</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Hosting & Deploy</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span> CRUD System
+                                            </span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Cross-browser
+                                                Support</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/login" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="bg-light rounded">
+                                    <div class="border-bottom p-4 mb-4">
+                                        <h4 class="text-primary-gradient mb-1">Full-Stack Plan</h4>
+                                        <span>For Front-end and Back-end</span>
+                                    </div>
+                                    <div class="p-4 pt-0">
+                                        <h1 class="mb-3">
+                                            <small class="align-top"
+                                                style="font-size: 22px; line-height: 45px;">Rp</small>2700k<small
+                                                class="align-bottom" style="font-size: 16px; line-height: 40px;">/
+                                                Yearly</small>
+                                        </h1>
+                                        <div class="d-flex justify-content-between mb-3"><span>HTML5 & CSS3 && Javascript</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Bootstrap v5 & Tailwind</span><i
+                                                class="fa fa-check text-primary-gradient pt-1"></i></div>
+                                        <div class="d-flex justify-content-between mb-3"><span>Responsive
+                                                Layout</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span>Hosting & Deploy</span><i class="fa fa-check text-primary-gradient pt-1"></i>
+                                        </div>
+                                        <a href="/login" class="btn btn-primary-gradient rounded-pill py-2 px-4 mt-4">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pricing End -->
+    {% endif %}
+      
+    
+
+    <!-- ini footer -->
+    {% extends "footer.html" %}
+
+    <!-- ... rest of your HTML code ... -->
+
+    <div id="popup" style="display: none; position: fixed; bottom: 0; right: 0; background: lightblue; padding: 20px;">
+        This is a pop-up!
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/counterup/1.0.0/jquery.counterup.min.js"></script>
+
+</body>
+
+</html>

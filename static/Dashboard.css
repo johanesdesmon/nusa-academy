@@ -1,0 +1,279 @@
+/*  */
+@import url("..//static/assets/css/clash-display.css");
+
+:root {
+  --black: #272D3B;
+  --red: #ed176f;
+  --coral: #f7817f;
+  --gradient: linear-gradient(90deg, var(--red), var(--coral));
+  --coral-light: #FFA07A;
+  --coral-dark: #E57373;
+
+  --orange: #FFA07A;
+  --yellow: #FFD700;
+
+  --teal: #008080;
+
+  --sky-blue: #87CEEB;
+  --c-brand-light: #6970dd;
+  --primary: #4294E3;
+  --secondary: #8F12FD;
+  --light: #F0F6FF;
+  --dark: #262B47;
+  --gradient2: linear-gradient(90deg, var(--primary), var(--secondary));
+  --gradient3: linear-gradient(to right, var(--primary), var(--secondary));
+  ---font-base: "Clashdisplay", sans-serif;
+
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: var(---font-base);
+  text-decoration: none;
+}
+body{
+  background: rgb(219, 219, 219);
+  text-decoration: none;
+}
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 20px;
+  background: #fff;
+}
+.logo{
+  display: flex;
+  align-items: center;
+}
+.logo a{
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 2rem 8rem 2rem 2rem;
+}
+.search_box{
+  display: flex;
+  align-items: center;
+}
+.search_box input{
+  padding: 9px;
+  width: 250px;
+  background: rgb(228, 228, 228);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.search_box i{
+  padding: 0.66rem;
+  cursor: pointer;
+  color: #fff;
+  background: #000;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.header-icons{
+  display: flex;
+  align-items: center;
+}
+.header-icons i{
+  margin-right: 2rem;
+  cursor: pointer;
+}
+.header-icons .account{
+  width: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-icons .account img{
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.container{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+/* Side menubar section */
+nav{
+  background: #fff
+}
+.side_navbar{
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+}
+.side_navbar span{
+  color: var(--black);
+  margin: 1rem 3rem;
+  font-size: 12px;
+  font-weight: 700;
+}
+.side_navbar a{
+  width: 100%;
+  padding: 0.8rem 3rem;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--black);
+  text-decoration: none;
+}
+.links{
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+.links a{
+  font-size: 13px;
+}
+.side_navbar a:hover{
+  background: rgb(235, 235, 235);
+}
+.side_navbar .active{
+  border-left: 2px solid rgb(100, 100, 100);
+}
+/* Main Body Section */
+.main-body{
+  width: 70%;
+  padding: 1rem;
+}
+.promo_card{
+  width: 100%;
+  color: #fff;
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 0.5rem 1rem 1rem 3rem;
+  background: var(--c-brand-light)
+}
+.promo_card h1, .promo_card span, button{
+  margin: 10px;
+
+}
+.promo_card button{
+  display: block;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.history_lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.list1,
+.list2,
+.list3 {
+  flex: 1 1 calc(33.33% - 20px);
+  box-sizing: border-box;
+}
+.row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+table{
+  width: 100%;
+  background: var(--c-brand-light);
+  padding: 1rem;
+  text-align: left;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+table td, th{
+  padding: 0.5rem;
+}
+table th{
+  font-size: 15px;
+  color: #fff;
+}
+table td{
+  font-size: 13px;
+  color: #fff
+}
+/* Sidebar Section */
+.sidebar{
+  width: 15%;
+  padding: 2rem 1rem;
+  background: #fff;
+}
+.sidebar h4{
+  margin-bottom: 1.5rem;
+}
+.sidebar .balance{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.balance .icon{
+  color: #fff;
+  font-size: 20px;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 1rem;
+  background: var(--c-brand-light)
+}
+.balance .info h5{
+  font-size: 16px;
+}
+.balance .info span{
+  font-size: 14px;
+  color: rgb(100, 100, 100);
+}
+.balance .info i{
+  margin-right: 2px;
+}
+
+.list3 {
+  margin: 110px;
+  width: 80%; /* Set the width to 100% to ensure it takes the full width */
+}
+
+.list3 .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.list3 h4 {
+  margin-bottom: 10px;
+}
+
+.list3 table {
+  width: 100%;
+  background: var(--c-brand-light);
+  padding: 1rem;
+  text-align: left;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.list3 table td,
+.list3 table th {
+  padding: 0.5rem;
+}
+
+.list3 table th {
+  font-size: 15px;
+  color: #fff;
+}
+
+.list3 table td {
+  font-size: 13px;
+  color: #fff;
+}
+
+.list1,
+.list2 {
+  margin-bottom: 20px; /* Add margin to create space between list items */
+}

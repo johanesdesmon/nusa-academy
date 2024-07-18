@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nusa Academy </title>
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+  <link rel="icon" type="image/png" sizes="16x16"
+        href="../static/images/kk (1).png">
+    <link rel="stylesheet" href="../static/stylecopy.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/Footer.css">
+    <link rel="stylesheet" href="../static/forum.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+
+    <script src="../static/Homescript.js"></script>
+    <!-- <script src="../static/forum.css"></script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../static/Myhome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <!-- Include SweetAlert2 CSS and JS files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.all.min.js"></script>
+
+
+    <script>
+        //initialize wow.js
+        document.addEventListener('DOMContentLoaded', function () {
+            new WOW().init();
+            console.log('wow.js initialized');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Bootstrap components
+            var dropdownTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+            var dropdownList = dropdownTriggerList.map(function (dropdownTriggerEl) {
+                return new bootstrap.Dropdown(dropdownTriggerEl);
+            });
+        });
+
+
+
+        $(document).ready(function () {
+            $('.comment-button').click(function () {
+                // Sembunyikan formulir komentar yang mungkin terbuka pada postingan lain
+                $('.comment-form').hide();
+
+                // Tampilkan formulir komentar untuk postingan yang diklik
+                $(this).closest('.comment-section').find('.comment-form').show();
+
+            });
+
+
+            $('.cancel-comment').click(function () {
+                // Sembunyikan formulir komentar pada postingan yang diklik
+                $(this).closest('.comment-form').hide();
+            });
+
+            $('.post-comment').click(function () {
+                var kontenValue = $(this).closest('.comment-form').find('textarea').val();
+                var postId = $(this).closest('.comment-form').data('post-id');
+            });
+        });
+
+        $(document).ready(function () {
+            $('.comment-trigger').click(function () {
+                var postId = $(this).data('post-id');
+                var commentsSection = $("#comments_" + postId);
+                $('#post_' + postId + ' .comment-form').show();
+                commentsSection.toggle();
+            });
+
+            // $('.cancel-comment').click(function () {
+            //     $(this).closest('.comment-form').hide();
+            // });
+
+            $('.post-comment').click(function () {
+                var kontenValue = $(this).closest('.comment-form').find('textarea').val();
+                var postId = $(this).closest('.comment-form').data('post-id');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/forum/${username}/comment',
+                    data: { 'konten': kontenValue, 'post_id': postId },
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                title: 'Berhasil Dikirim!',
+                                text: response["msg"],
+                                icon: 'success',
+                                confirmButtonText: 'Ok'
+                            })
+                            $('#post_' + postId + ' .comment-form').hide();
+                            window.location.reload();
+                        } else {
+                            // Tangani kesalahan atau berikan pesan kesalahan kepada pengguna
+                            console.error(response.msg);
+                        }
+                    }
+                });
+            });
+        });
+
+        function updateCommentView(postId, username, content, timestamp) {
+            var commentSection = $('#comments_' + postId);
+
+            var commentHtml = '<div class="comment">' +
+                '<p class="comment-content">' + content + '</p>' +
+                '<span class="comment-info">' + username + ' - ' + timestamp + '</span>' +
+                '</div>';
+
+            commentSection.prepend(commentHtml);
+        }
+
+
+
+        $(document).ready(function () {
+            // Menangani pengiriman formulir dari modal
+            $('#createPostForm').submit(function (e) {
+                e.preventDefault();
+                var kontenValue = $('#postContent').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/forum/${user_info.username}',
+                    data: { 'konten': kontenValue },
+                    success: function (response) {
+                        // Menutup modal setelah postingan berhasil dibuat
+                        Swal.fire({
+                            title: 'Berhasil Dikirim!',
+                            text: response["msg"],
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        })
+                        $('#createPostModal').modal('hide');
+                        $('#postContent').val('');
+                        window.location.reload();
+
+                    },
+                    error: function (xhr, status, error) {
+                        // Menampilkan pesan kesalahan jika ada
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Gagal membuat postingan. Silakan coba lagi.',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        });
+                    }
+                });
+            });
+        });
+
+        function updatePostView(forum) {
+            // Buat HTML untuk postingan baru
+            var postHtml = '<div class="d-flex flex-column comment-section" id="post_' + forum['_id'] + '">' +
+                '<div class="bg-white p-2">' +
+                '<div class="d-flex flex-row user-info">' +
+                '<img class="rounded-circle" src="' + forum['foto_profil'] + '" style="width: 60px; height: 60px;">' +
+                '<div class="d-flex flex-column justify-content-start ml-2">' +
+                '<span class="d-block font-weight-bold name">' + forum['username'] + '</span>' +
+                '<span class="date text-black-50">' + forum['role'] + '</span>' +
+                '<span class="date text-black-50">' + forum['post_data'] + '</span>' +
+                '</div>' +
+                '</div>' +
+                '<div class="mt-2">' +
+                '<p class="comment">' + forum['konten'] + '</p>' +
+                '</div>' +
+                '</div>' +
+                '<div class="bg-white">' +
+                '<div class="d-flex flex-row fs-12">' +
+                '<div class="like p-2 cursor">' +
+                '<i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span>' +
+                '</div>' +
+                '<div class="like p-2 cursor comment-trigger" data-post-id="' + forum['_id'] + '">' +
+                '<i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span>' +
+                '</div>' +
+                '<div class="like p-2 cursor">' +
+                '<i class="fa fa-share"></i><span class="ml-1">Share</span>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '<form class="bg-light p-2 comment-form" data-post-id="' + forum['_id'] + '" style="display: none;">' +
+                '<div class="d-flex flex-row align-items-start">' +
+                '<img class="rounded-circle" src="' + user_info.profile_pic_real + '" width="40">' +
+                '<textarea name="konten" class="form-control ml-1 shadow-none textarea" id="comment_' + forum['_id'] + '"></textarea>' +
+                '</div>' +
+                '<div class="mt-2 text-right">' +
+                '<button type="button" class="btn btn-primary post-comment">Post comment</button>' +
+                '<button class="btn btn-outline-primary btn-sm ml-1 shadow-none cancel-comment" type="button">Cancel</button>' +
+                '</div>' +
+                '</form>' +
+                '<div class="comments-section" id="comments_' + forum['_id'] + '"></div>' +
+                '</div>';
+
+            // Masukkan postingan baru ke bagian atas daftar
+            $('.col-md-8').append(postHtml);
+        }
+
+        $(document).ready(function () {
+    // Get the status of likes for each post when the page loads
+    $('.like').each(function () {
+        let postId = $(this).data('post-id');
+
+        $.ajax({
+            url: '/get_like_status',
+            type: 'GET',
+            data: {
+                post_id: postId
+            },
+            success: function (data) {
+                if (data.is_liked) {
+                    $(this).addClass('liked');
+                }
+            }.bind(this),
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    // The rest of your code...
+});
+        $(document).ready(function () {
+            $('.like').on('click', function (e) {
+                e.preventDefault();
+
+                let postId = $(this).data('post-id');
+                let isLiked = $(this).hasClass('liked');  // Check if the post is already liked
+
+                $.ajax({
+                    url: '/like',
+                    type: 'POST',
+                    data: {
+                        post_id: postId,
+                        is_liked: isLiked  
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            $(this).find('.like-count').text(data.likes);
+                            $(this).toggleClass('liked'); 
+                        } else {
+                            console.log(data.msg);
+                        }
+                    }.bind(this),
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        $(document).ready(function () {
+            $('.read-more').click(function () {
+                $('.extra-comments').show();
+                $(this).hide();
+                $('.show-less').show();
+            });
+
+            $('.show-less').click(function () {
+                $('.extra-comments').hide();
+                $(this).hide();
+                $('.read-more').show();
+            });
+        });
+    </script>
+
+    <style>
+        @import url(../static/assets/css/clash-display.css);
+
+        :root {
+            --main-red-rgb-015: rgba(189, 21, 11, 0.1);
+            --main-black: #110f16;
+            --gradient: linear-gradient(to right, var(--main-black), var(--main-red-rgb-015));
+        }
+
+        :root {
+            --font-base: "ClashDisplay", sans-serif;
+        }
+
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Define the slide-in animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the slide-in animation to each box */
+        .box {
+            animation: slideIn 4s ease-out;
+            /* Adjust the duration and timing function as needed */
+        }
+
+        .content,
+        .btn {
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Gaya normal */
+        .btn-primary-gradient {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #fff;
+        }
+
+        /* Gaya hover */
+        .btn-primary-gradient:hover {
+            background: #fff;
+            color: #fff
+        }
+
+        /* Ukuran font tambahan */
+        .btn-primary-gradient {
+            font-size: 18px;
+
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+        }
+
+        body {
+            height: 20rem;
+            background: url('../static/images/rm120batch2-techi-14-framebg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin-top: auto;
+        }
+
+        .tombol-posting {
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 30px 0px #000000;
+            width: 100%;
+            font-family: var(--font-base);
+            font-weight: 500;
+        }
+
+        #nav-links a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.5rem;
+            background: transparent;
+        }
+
+        .extra-comments {
+            display: none;
+        }
+        .liked .fa-thumbs-up {
+            color: blue;
+            }
+        @media (max-width: 661px) {
+          footer{
+            margin-top:200px;
+          }
+      }
+    </style>
+
+</head>
+
+<body>
+
+
+    <header>
+        {% if user_info and user_info.role == 'admin' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item"
+                                href="/administrator/dashboard/{{ user_info.username }}">Dashboard</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if user_info and user_info.role == 'member' %}
+        <a href="/" class="logo">
+            <img src="../static/images/kk (1).png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item" href="/profil/{{ user_info.username }}">Pengaturan Profil</a></li>
+                        <li><a class="dropdown-item" href="/pembelianku">Pembelianku</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+                <!-- <li><a href="#" class="fw-bolder"> {{ user_info.username }} </a></li> -->
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if not user_info %}
+        <a href="/home" class="logo">
+            <img src="../static/images/kk (1).png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/login" class="fw-bolder">Mentor</a></li>
+                <li><a href="/login" class="fw-bolder">Matery</a></li>
+                <li><a href="/login" class="fw-bolder">Forum</a></li>
+                <li><a href="/login" class="fw-bolder">Contact</a></li>
+            </ul>
+
+            <a id="Login" href="/login"
+                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 fw-bolder">Login</a>
+        </nav>
+        {% endif %}
+
+    </header>
+
+    <div class="container mt-5 forum-posting" style="margin-top: 20px;">
+        <div class="d-flex justify-content-center row mt-5">
+            <div class="col-md-8 forum-posting mt-5">
+                <button class="btn btn-primary mb-4 p-3 tombol-posting" data-bs-toggle="modal"
+                    data-bs-target="#createPostModal" style="margin-top: 50px;">
+                    Buat Postingan
+                </button>
+                {% for forum in forums %}
+                <div class="d-flex flex-column comment-section post-border" id="post_{{ forum['_id'] }}">
+                    <div class="bg-white p-2">
+                        <div class="d-flex flex-row user-info">
+                            <img class="rounded-circle"
+                                src="{{ url_for('static', filename=forum.get('foto_profil', '')) }}"
+                                style="width: 60px; height: 60px;">
+                            <div class="d-flex flex-column justify-content-start ml-2">
+                                <span class="d-block font-weight-bold name" > <a href="/profil/{{ forum.get('username') }}" style="text-decoration:none;">{{ forum.get('username', '') }} </a></span>
+                                <span class="date text-black-50">{{ forum.get('role', '') }}</span>
+                                <span class="date text-black-50">{{ forum.get('post_data', '') }}</span>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <p class="comment">{{ forum['konten'] }}</p>
+                        </div>
+                    </div>
+                    <div class="bg-white">
+                        <div class="d-flex flex-row fs-12">
+                            <div class="like p-2 cursor" id="likeButton-{{ forum['_id'] }}"
+                                data-post-id="{{ forum['_id'] }}">
+                                <i class="fa fa-thumbs-up"></i>
+                                <span class="like-count">{{ forum['likes'] }}</span>
+                            </div>
+                            <div class=" p-2 cursor comment-trigger" data-post-id="{{ forum['_id'] }}">
+                                <i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span>
+                            </div>
+                            <div class="like p-2 cursor">
+                                <i class="fa fa-share"></i><span class="ml-1">Share</span>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="bg-light p-2 comment-form" data-post-id="{{ forum['_id'] }}" style="display: none;">
+                        <div class="d-flex flex-row align-items-start">
+                            <img class="rounded-circle"
+                                src="{{ url_for('static', filename=user_info.profile_pic_real)}}" width="40"
+                                height="40">
+                            <textarea name="konten" class="form-control ml-1 shadow-none textarea"
+                                id="comment_{{ forum['_id'] }}"></textarea>
+                        </div>
+                        <div class="mt-2 text-right">
+                            <button type="button" class="btn btn-primary post-comment">Post comment</button>
+                            <button class="btn btn-outline-primary btn-sm ml-1 shadow-none cancel-comment"
+                                type="button">Cancel</button>
+                        </div>
+                    </form>
+                    <div class="comments-section" id="comments_{{ forum['_id'] }}" style="display: none;">
+                        {% for comment in forum['comments'] %}
+                        <div class="comment comment-border {% if loop.index > 3 %}extra-comments{% endif %}">
+                            <img class="rounded-circle"
+                                src="{{ url_for('static', filename=comment.get('foto_profil', '')) }}" width="30"
+                                height="30" />
+                            <span class="comment-info"><strong><a href="/profil/{{ comment['username'] }}" style="text-decoration:none;" >@{{ comment['username'] }}</a> ({{ comment['role']
+                                    }})</strong> -{{comment['post_data'] }}</span>
+                            <p class="comment-content">{{ comment['konten'] }}</p>
+                        </div>
+                        {% endfor %}
+                        {% if forum['comments']|length > 5 %}
+                        <button style="background: transparent;" class="read-more">Read More</button>
+                        <button style="background: transparent; display: none;" class="show-less" >Show Less</button>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark" style="margin-top: 300px;">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-5">
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#"> <!--<img src="./New folder/Images/1534080972.svg" alt="">!--> </a>
+                    </div>
+
+                    <p> Nusa Academy is a project developed by Group 5 within Team 7,
+                        involving the collaborative efforts of three individuals.
+                    </p>
+                    <p>&copy; 2023 Group 5. All Rights Reserved.</p>
+
+                    <div class="linelast"></div>
+                    <div>
+                        <a href="#"><i class="ri-instagram-fill"></i></a>
+                        <a href="#"><i class="ri-github-fill"></i></a>
+                        <a href="#"><i class="ri-line-fill"></i></a>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class=" text-white mb-0">Profile</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li> <a href="#">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class=" text-white">Project/Work</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li> <a href="#"> Forum</a></li>
+                            <li> <a href="#"> Mentor</a></li>
+                            <li> <a href="#"> Matery</a></li>
+                            <li> <a href="#"> Class</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class=" text-white">Contact</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li> <a href="#"> Pangkalan Jati Street 1, Cinere,Depok - 089635626892 </a></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+    </footer>
+
+    <!-- ... rest of your HTML code ... -->
+
+    <div id="popup" style="display: none; position: fixed; bottom: 0; right: 0; background: lightblue; padding: 20px;">
+        This is a pop-up!
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/counterup/1.0.0/jquery.counterup.min.js"></script>
+
+</body>
+<!-- Modal untuk membuat postingan baru -->
+<div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Buat Postingan Baru</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulir untuk membuat postingan baru -->
+                <form id="createPostForm">
+                    <div class="mb-3">
+                        <label for="postContent" class="form-label">Isi Postingan:</label>
+                        <textarea class="form-control" id="postContent" name="konten" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Buat Postingan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</html>

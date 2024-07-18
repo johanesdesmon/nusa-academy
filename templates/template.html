@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silabus Page</title>
+</head>
+<body>
+    <header>
+        {% if user_info and user_info.role == 'admin' %}
+        <a href="#" class="logo">Logo</a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <a href="/administrator/dashboard">Dashboard</a>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/mentor">Mentor</a>
+            <a href="/materi">Materi</a>
+            <a href="/forum">Forum</a>
+            <a href="/hubungi_kami">Kontak</a>
+            <a class="navbar-brand"> {{ user_info.username }} Admin</a>
+            <!-- <button id="logout-button" style="margin-right: 10px;" class="btn btn-danger">Logout</button> -->
+            <a id="logout-button" style="margin-right: 10px;" id="Login" href="#" class="btn">Logout</a>
+            <!-- ... (Tambahkan elemen-elemen lain sesuai kebutuhan) ... -->
+        </nav>
+        {% endif %}
+
+        <!-- Navbar Member -->
+        {% if user_info and user_info.role == 'member' %}
+        <a href="#" class="logo">Logo</a>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/mentor">Mentor</a>
+            <a href="/materi">Materi</a>
+            <a href="/forum">Forum</a>
+            <a href="/hubungi_kami">Kontak</a>
+            <a class="navbar-brand">{{ user_info.username }}</a>
+            <!-- <button id="logout-button" style="margin-right: 10px;" class="btn btn-danger">Logout</button>
+                 -->
+            <a id="logout-button" style="margin-right: 10px;" id="Login" href="#" class="btn">Logout</a>
+
+            <!-- ... (Tambahkan elemen-elemen lain sesuai kebutuhan) ... -->
+        </nav>
+        {% endif %}
+
+        <!-- Navbar untuk Pengunjung atau yang belum login -->
+        {% if not user_info %}
+        <a href="#" class="logo">Logo</a>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/mentor">Mentor</a>
+            <a href="/login">Materi</a>
+            <a href="/login">Forum</a>
+            <a href="/login">Kontak</a>
+
+            <a style="margin-right: 10px;" id="Login" href="/login" class="btn">Login</a>
+        </nav>
+        </nav>
+        {% endif %}
+    </header>
+</body>
+</html>

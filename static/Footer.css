@@ -1,0 +1,250 @@
+@import url(../static/assets/css/clash-display.css);
+
+:root {
+    --c-dark: #212529;
+    --c-brand: #4e57d4;
+    --c-brand-light: #6970dd;
+    --c-brand-rgb: rgb(78, 87, 212);
+    --c-body: #727272;
+    --font-base: "Clashdisplay", sans-serif;
+    --font-base2: "Clashdisplay", sans-serif;
+    --box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.08);
+    --transition: all 0.5 ease;
+    --primary: #4294E3;
+    --secondary: #8F12FD;
+    --light: #F0F6FF;
+    --dark: #262B47;
+    --gradient2: linear-gradient(90deg, var(--primary), var(--secondary));
+    --gradient3: linear-gradient(to right, var(--primary), var(--secondary));
+    --font-base: 
+}
+
+.heading::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin: 12px auto 22px;
+}
+
+footer {
+    padding-top: 50px;
+    font-family: var(--font-base);
+    text-decoration: none;
+}
+
+.footer-top {
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+}
+
+.footer-bottom {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+footer li, footer p , footer a {
+    color: white;
+    text-decoration: none;
+    animation: slideIn 2s ease-out;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer .line {
+    width: 40px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin-top: 12px;
+    margin-bottom: 22px;
+    animation: slideIn 2s ease-out;
+}
+
+footer .linelast {
+    max-width: 150px;
+    height: 4px;
+    background-color: var(--c-brand);
+    animation: slideIn 2s ease-out;
+}
+
+footer p {
+    font-size: 12px;
+    
+}
+
+footer h5 {
+    font-size: 14px; 
+    animation: slideIn 2s ease-out;
+}
+
+
+footer li a {
+    font-size: 12px; 
+}
+
+.custom-h5 {
+    font-size: 3em;
+    color: #123456;
+    /* Additional styles for h5 */
+    transition: color 0.3s ease-in-out;
+    /* Smooth color transition */
+}
+
+.custom-h5:hover {
+    color: #aabbcc;
+    /* Change color on hover */
+}
+
+.custom-h1 {
+    font-size: 5em;
+    color: #789abc;
+    /* Additional styles for h1 */
+    background: linear-gradient(45deg, #789abc, #456def);
+    /* Gradient background */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+
+.custom-p {
+    font-size: 2em;
+    font-weight: 900;
+    /* Additional styles for p */
+    animation: fadeIn 2s ease-in-out;
+    /* Fade in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.custom-h5 {
+    font-size: 3em;
+    color: #123456;
+    /* Additional styles for h5 */
+}
+
+.custom-h1 {
+    font-size: 5em;
+    color: #789abc;
+    /* Additional styles for h1 */
+    background: linear-gradient(45deg, #789abc, #456def);
+    /* Gradient background */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.num {
+    font-size: 3.5em;
+    /* Increase the size of data-toggle h2 */
+    color: #ff5733;
+    /* Add your desired color */
+    /* Additional styles for num */
+    transition: color 0.3s ease-in-out;
+    /* Smooth color transition */
+}
+
+.num:hover {
+    color: #aabbcc;
+    /* Change color on hover */
+}
+
+.btn-read-more {
+    font-size: 1.5em;
+    /* Add any other styles you want for the button */
+    transition: color 0.3s ease-in-out, font-size 0.3s ease-in-out;
+    /* Smooth color and size transition */
+    font-family: var(--font-base);
+    font-weight: 900;
+}
+
+.btn-read-more:hover {
+    color: #ffffff;
+    /* Change color on hover to white */
+    font-size: 1.8em;
+    /* Increase size on hover */
+    font-family:var(--font-base2) ;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+    /* Adjust the spacing between list items if needed */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 1.5rem;
+}
+
+
+
+#nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nav-links li {
+    margin: 0 1rem;
+}
+
+#nav-links a {
+    text-decoration: none;
+    color: var(--light);
+    font-size: 1.5rem;
+    background: transparent;
+}
+
+.logo img {
+    max-width: 50px;
+    /* Ubah ukuran maksimum sesuai keinginan Anda */
+    height: auto;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#pageHeaderTitle::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin: 12px auto 22px;
+}
+
+.judul::after {
+    content: '';
+    display: block;
+    width: 75px;
+    height: 4px;
+    background-color: var(--c-brand);
+    margin: 12px auto 22px;
+}

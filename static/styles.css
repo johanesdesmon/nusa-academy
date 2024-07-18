@@ -1,0 +1,163 @@
+:root{
+    --primary: #4294E3;
+    --secondary: #8F12FD;
+    --light: #F0F6FF;
+    --dark: #262B47;
+}
+
+.text-primary-gradient {
+    background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-secondary-gradient {
+    background: linear-gradient(to bottom right, var(--secondary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-primary-gradient {
+    background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+}
+
+.bg-secondary-gradient {
+    background: linear-gradient(to bottom right, var(--secondary), var(--primary));
+}
+
+.btn {
+    transition: .5s;
+}
+
+.btn.btn-primary-gradient,
+.btn.btn-secondary-gradient {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    color: #FFFFFF;
+    z-index: 1;
+}
+
+.btn.btn-primary-gradient::after,
+.btn.btn-secondary-gradient::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: .5s;
+    z-index: -1;
+    opacity: 0;
+}
+
+.btn.btn-primary-gradient,
+.btn.btn-secondary-gradient::after {
+    background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+}
+
+.btn.btn-secondary-gradient,
+.btn.btn-primary-gradient::after {
+    background: linear-gradient(to bottom right, var(--secondary), var(--primary));
+}
+
+.btn.btn-primary-gradient:hover::after,
+.btn.btn-secondary-gradient:hover::after {
+    opacity: 1;
+}
+
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: normal;
+    border-radius: 50px;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    right: 45px;
+    bottom: 45px;
+    z-index: 99;
+    border: none;
+    background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+}
+
+/* For screens smaller than 991px */
+@media only screen and (max-width: 991px) {
+    .btn-square,
+    .btn-sm-square,
+    .btn-lg-square {
+        width: 34px;
+        height: 34px;
+    }
+
+    .back-to-top {
+        right: 40px;
+        bottom: 40px;
+    }
+}
+
+/* For screens smaller than 768px */
+@media only screen and (max-width: 768px) {
+    .btn-square,
+    .btn-sm-square,
+    .btn-lg-square {
+        width: 30px;
+        height: 30px;
+    }
+
+    .back-to-top {
+        right: 35px;
+        bottom: 35px;
+    }
+}
+
+/* For screens smaller than 600px */
+@media only screen and (max-width: 600px) {
+    .btn-square,
+    .btn-sm-square,
+    .btn-lg-square {
+        width: 26px;
+        height: 26px;
+    }
+
+    .back-to-top {
+        right: 30px;
+        bottom: 30px;
+    }
+}
+
+/* For screens smaller than 400px */
+@media only screen and (max-width: 400px) {
+    .btn-square,
+    .btn-sm-square,
+    .btn-lg-square {
+        width: 22px;
+        height: 22px;
+    }
+
+    .back-to-top {
+        right: 25px;
+        bottom: 25px;
+    }
+}

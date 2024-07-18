@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nusa Academy </title>
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+  <link rel="icon" type="image/png" sizes="16x16"
+        href="../static/images/ncc.png">
+    <link rel="stylesheet" href="../static/stylecopy.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/Footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
+    <script src="../static/Myhome.js"></script>
+    <script src="../static/Homescript.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../static/Myhome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+
+    <script>
+        //initialize wow.js
+        document.addEventListener('DOMContentLoaded', function () {
+            new WOW().init();
+            console.log('wow.js initialized');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Bootstrap components
+            var dropdownTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+            var dropdownList = dropdownTriggerList.map(function (dropdownTriggerEl) {
+                return new bootstrap.Dropdown(dropdownTriggerEl);
+            });
+        });
+
+        function Update_user() {
+            let name = $('#profile-Name').val();
+            let file = $('#input-pic').prop("files")[0];
+            // let subtitle = $('#profile-Subtitle').val();
+            let form_data = new FormData();
+            form_data.append('file_give', file);
+            form_data.append('name_give', name);
+            // form_data.append('subtitle_give', subtitle);
+            $.ajax({
+                type: 'POST',
+                url: '/update_user',
+                data: form_data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response['result'] === 'success') {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        function logout() {
+            $.removeCookie('mytoken', { path: '/' });
+            alert('Signed out!');
+            window.location.href = "/login";
+        }
+
+        // Panggil fungsi logout saat tombol logout di
+        $(document).ready(function () {
+            $('#logout-button').click(function () {
+                logout();
+            });
+        });
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Define the slide-in animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the slide-in animation to each box */
+        .box {
+            animation: slideIn 4s ease-out;
+            /* Adjust the duration and timing function as needed */
+        }
+
+        .content,
+        .btn {
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Gaya normal */
+        .btn-primary-gradient {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #fff;
+        }
+
+        /* Gaya hover */
+        .btn-primary-gradient:hover {
+            background: #fff;
+            color: #fff
+        }
+
+        /* Ukuran font tambahan */
+        .btn-primary-gradient {
+            font-size: 18px;
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+        }
+
+        body {
+            height: 80rem;
+        }
+
+        .container-fluid {
+            margin-top: 20px;
+            /* Adjust the margin as needed */
+        }
+
+        .container-fluid {
+            min-height: 100vh;
+            /* 100% of the viewport height */
+        }
+
+        header {
+            background: transparent;
+        }
+
+        #nav-links a {
+            text-decoration: none;
+            color: black;
+            font-size: 1.5rem;
+            background: transparent;
+        }
+
+        .dropdown-menu {
+
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 700;
+        }
+
+        .dropdown-menu li a {
+            font-weight: bolder;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        {% if user_info and user_info.role == 'admin' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item"
+                                href="/administrator/dashboard/{{ user_info.username }}">Dashboard</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if user_info and user_info.role == 'member' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item" href="/profil/{{ user_info.username }}">Pengaturan Profil</a></li>
+                        <li><a class="dropdown-item" href="/pembelianku">Pembelianku</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+                <!-- <li><a href="#" class="fw-bolder"> {{ user_info.username }} </a></li> -->
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if not user_info %}
+        <a href="/home" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/login" class="fw-bolder">Mentor</a></li>
+                <li><a href="/login" class="fw-bolder">Matery</a></li>
+                <li><a href="/login" class="fw-bolder">Forum</a></li>
+                <li><a href="/login" class="fw-bolder">Contact</a></li>
+            </ul>
+
+            <a id="Login" href="/login" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 fw-bolder">Login</a>
+        </nav>
+        {% endif %}
+
+    </header>
+
+
+
+    <div class="container" style="margin-top: 15rem;">
+        <div class="row text-center">
+
+            <!-- Team item -->
+            <div class="col-xl-3 col-sm-6 mb-5" style="margin-left: auto; margin-right: auto; width: 50%;">
+                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                        src="{{ url_for('static', filename=user_data.profile_pic_real)}}" alt="" style="width: 200px; height: 200px;"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0" style="font-size: 25px; font-family: 'Courier New', Courier, monospace; "> <strong>{{user_data.name}}</strong></strong></h5><span
+                        class="small text-uppercase text-muted" style="font-size: 20px; font-family: 'Courier New', Courier, monospace;">@{{user_data.username}}</span><br><span
+                        class="small text-uppercase text-muted" style="font-size: 15;">{{user_data.role}}</span>
+                        <br>
+                    {% if status %}
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#update">Update</button>
+                    {% endif %}
+                </div>
+            </div><!-- End -->
+        </div>
+    </div>
+
+    <!-- ini footer -->
+    {% extends "footer.html" %}
+
+    <div class="modal" id="update">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Baru</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <form method="POST">
+                    <div class="modal-body">
+                        <input type="file" id="input-pic" class="file-input" name="resume" />
+                        <br>
+                        <br>
+                        <input type="text" id="profile-Name" name="profile" placeholder="Profile Name"
+                            value="{{user_info.username}}" class="form-control">
+                        <br>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveUpdate"
+                            onclick="Update_user()">save</button>
+
+
+                    </div>
+                </form>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/counterup/1.0.0/jquery.counterup.min.js"></script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+</html>

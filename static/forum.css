@@ -1,0 +1,113 @@
+:root {
+    --border-style: 1px solid #000;
+    --padding: 10px;
+    --margin-bottom: 10px;
+
+    --main-red-rgb-015: rgba(189, 21, 11, 0.1);
+    --main-black: #110f16;
+    --gradient: linear-gradient(to right, var(--main-black), var(--main-red-rgb-015));
+
+}
+
+
+body {
+    background: url()
+}
+
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.cursor:hover {
+    color: blue
+}
+
+.cursor {
+    cursor: pointer
+}
+
+.textarea {
+    resize: none
+}
+
+
+/* .d-flex{
+    margin-top: 40px;
+} */
+
+.forum-posting {
+    margin-top: 100px;
+}
+
+.post-border {
+    border: 1px solid #fff;
+    /* Change the color as needed */
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.comment-border {
+    border: 1px solid #fff;
+    /* Change the color as needed */
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.15);
+}
+
+.user-info>div {
+    margin-left: 15px;
+    /* Adjust as needed */
+}
+
+.comment-info {
+    margin-left: 15px;
+    /* Adjust as needed */
+}
+
+/* CSS for 1200px screens */
+@media (max-width: 1200px) {
+    .forum-posting {
+        margin-top: 80px;
+    }
+}
+
+/* CSS for 991px screens */
+@media (max-width: 991px) {
+    .forum-posting {
+        margin-top: 60px;
+    }
+}
+
+/* CSS for 661px screens */
+@media (max-width: 661px) {
+    .forum-posting {
+        margin-top: 40px;
+    }
+}
+
+/* CSS for 441px screens */
+@media (max-width: 441px) {
+    .forum-posting {
+        margin-top: 20px;
+    }
+}

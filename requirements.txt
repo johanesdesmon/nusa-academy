@@ -1,0 +1,14 @@
+blinker==1.5.0
+certifi
+click
+colorama
+dnspython
+Flask
+itsdangerous
+Jinja2
+MarkupSafe
+PyJWT
+pymongo
+python-dotenv
+Werkzeug
+pytz

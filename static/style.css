@@ -1,0 +1,315 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@700&family=Noto+Serif+Display:wght@700&family=Nunito:wght@200;300;400;600;700&display=swap');
+
+
+:root{
+    --black :#49629d;
+    --red : #ed176f;
+    --coral : #f7817f;
+    --gradient : linear-gradient(90deg, var(--red), var(--coral));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    outline: none;
+    border : none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60%;
+    height: auto;
+    background-color: #cfd8e9 !important;
+    background-position: center;
+    
+}
+
+*::selection{
+    background: var(--red);
+    color: #fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    padding: .7rem 3rem;
+    background: var(--gradient);
+    color: #fff;
+    font-size: 1.7rem;
+    cursor: pointer;
+    border-radius: 5rem;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
+section{
+    padding: 3rem 9%;
+}
+
+.heading{
+    text-align: center;
+    font-size: 3.5rem;
+    padding: 1rem;
+    color: transparent;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-transform: uppercase;
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--black);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #fff;
+}
+
+header .navbar a{
+    font-size: 2rem;
+    margin-left: 2rem;
+    color: #fff;
+}
+
+header .navbar a:hover{
+    color: var(--white);
+}
+
+
+
+#menu-bar{
+    font-size: 3rem;
+    cursor: pointer;
+    color: #fff;
+    display: none;
+}
+
+
+body{
+    height: 300rem;
+}
+
+.about .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.about .box-container .box{
+    margin: 1rem;
+    border-radius: .5rem;
+    text-align: center;
+    background: rgba(237, 23, 111,.05);
+    padding: 1rem;
+    flex: 1 1 30rem;
+    cursor: pointer;
+}
+
+.about .box-container .box h3{
+    font-size: 2rem;
+    color: var(--black);
+    padding: 1rem 0;
+    
+}
+
+.about .box-container .box i{
+    color: #666;
+    font-size: 5rem;
+    padding: 1rem;
+    
+}
+/*media queries*/
+
+@media(max-width: 991px){
+    html{
+        font-size: 55%;
+    }
+
+    header{
+        padding: 2rem;
+    }
+
+    section {
+        padding: 2rem 4%;
+
+    }
+}
+
+@media(max-width: 768px){
+    #menu-bar{
+        display: block;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: var(--black);
+        border-top: .1rem solid rgba(0,0,0,.2);
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .navbar a{
+        /* font-size: 2rem; */
+        margin: 1.5rem 0;
+        color: #fff;
+        display: block;
+        text-align: center;
+        border-radius: .5rem;
+        background: var(--gradient);
+        padding: 1rem;
+    }
+
+    header .navbar a:hover{
+        background: var(--black);
+    }
+
+    .fa-times {
+        transform: rotate(180deg);
+    }
+
+    .home .content h3{
+        font-size: 4rem;
+        color: #fff;
+    }
+
+    .home .content p{
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+
+    
+}
+
+@media(max-width: 400px){
+    html{
+        font-size: 50%;
+    }   
+
+}
+
+.home {
+    background-color: #1e2430 !important;
+    background-size: cover;
+    background-position: center;
+    min-height: 60%;
+    min-width: 100%;
+    text-align: center;
+    margin-top: 0; /* Hapus margin dari top */
+}
+
+.home .content {
+    padding-top: 0;
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.home .content h3{
+    font-size: 6.5rem;
+    color: #fff;
+}
+
+.home .content p{
+    font-size: 1.7rem;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.home .swiper-container {
+    width: 100%;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+.home .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 30rem;
+    height: 50rem
+  }
+
+.home .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Bagian Footer */
+/* Footer Styles */
+/* ... CSS yang sudah ada ... */
+
+.footer {
+    background-color: #49629d;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    flex-shrink: 0;
+    padding-top: 50px;
+    width: 100%; /* Menjadikan lebar footer menjadi 100% */
+}
+
+/* Gaya tambahan untuk memastikan footer di bagian paling bawah */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 100%;
+    margin: 0; /* Menghapus margin default */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%; /* Menjadikan lebar container menjadi 100% */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px; /* Sesuaikan dengan kebutuhan Anda */
+    width: 100%;
+    margin: 0 auto;
+}
+
+.footer-bottom {
+    margin-top: auto;
+}
+
+/* ... CSS yang sudah ada ... */

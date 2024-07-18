@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nusa Academy </title>
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+  <link rel="icon" type="image/png" sizes="16x16"
+        href="../static/images/ncc.png">
+    <link rel="stylesheet" href="../static/stylecopy.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/Footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="../static/stylecard.css">
+    <link rel="stylesheet" href="../static/sidebarCard.css">
+    <link rel="stylesheet" href="../static/Mymentor.css">
+
+    <script src="../static/Homescript.js"></script>
+    <script src="../static/klscript.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../static/Myhome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+
+    <script>
+        // console.log("Role User: {{ user_info.role }}");
+        //initialize wow.js
+        document.addEventListener('DOMContentLoaded', function () {
+            new WOW().init();
+            console.log('wow.js initialized');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Bootstrap components
+            var dropdownTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+            var dropdownList = dropdownTriggerList.map(function (dropdownTriggerEl) {
+                return new bootstrap.Dropdown(dropdownTriggerEl);
+            });
+        });
+
+        $(document).ready(function () {
+            $('#mentorList').submit(function (e) {
+                e.preventDefault()
+                var dataSend = $('#mentorList').serialize();
+                console.log(dataSend)
+                $.ajax({
+                    type: 'POST',
+                    url: '/mentor_kami',
+                    data: dataSend,
+                    dataType: 'html',
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Berhasil Dikirim!',
+                            text: 'Good',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        })
+                        $('article#mentorList')[0].reset();
+
+                    }
+                });
+
+            });
+        });
+
+        $(document).ready(function () {
+            $(".delete-button").on("click", function () {
+                var mentorId = $(this).closest(".delete-form").data("mentor-id");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/delete_mentor",
+                    data: { id: mentorId },
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Penghapusan',
+                            text: 'good.',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        })
+                        // Tindakan setelah penghapusan berhasil, misalnya, memuat ulang daftar mentor
+                        window.location.reload();
+                    },
+                    error: function (error) {
+                        console.log("Error:", error);
+                        // Handle error jika diperlukan
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Define the slide-in animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the slide-in animation to each box */
+        .box {
+            animation: slideIn 4s ease-out;
+            /* Adjust the duration and timing function as needed */
+        }
+        body{
+            height: 50rem;
+        }
+
+        .content,
+        .btn {
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Gaya normal */
+        .btn-primary-gradient {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #fff;
+        }
+
+        /* Gaya hover */
+        .btn-primary-gradient:hover {
+            background: #fff;
+            color: #fff
+        }
+
+        /* Ukuran font tambahan */
+        .btn-primary-gradient {
+            font-size: 18px;
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+        }
+
+        body {
+            height: 20rem;
+            background: #110F16;
+        }
+
+        .postcard__img {
+            padding: 10px;
+            width: 100%;
+            /* Menyesuaikan lebar gambar dengan lebar kontainer (kartu) */
+            height: auto;
+            /* Menjaga proporsi aspek gambar */
+            max-width: 100%;
+            /* Mencegah gambar melebihi lebar kontainer jika ukurannya besar */
+            display: block;
+            /* Menghindari ruang putih tambahan di sekitar gambar */
+        }
+
+        .postcard {
+            width: 100%;
+            /* Menyesuaikan lebar kartu dengan lebar kontainer */
+            box-sizing: border-box;
+            /* Menghindari penambahan lebar dan tinggi bingkai */
+            /* Tambahan gaya atau properti yang mungkin diperlukan */
+            margin: 10px;
+            /* Menghilangkan margin bawaan browser */
+            padding: 10px;
+            /* Memberikan ruang di sekitar konten kartu */
+            /* ... tambahkan gaya tambahan sesuai kebutuhan Anda ... */
+        }
+
+        a i.fa {
+            margin-right: 10px;
+        }
+
+        a:hover i.fa {
+            color: blue;
+            transform: scale(1.2);
+        }
+
+        button:hover i.fa-solid {
+            color: green;
+            /* Mengubah warna ikon saat di-hover */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+
+    </div>
+
+    <header>
+        {% if user_info and user_info.role == 'admin' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item"
+                                href="/administrator/dashboard/{{ user_info.username }}">Dashboard</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if user_info and user_info.role == 'member' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item" href="/profil/{{ user_info.username }}">Pengaturan Profil</a></li>
+                        <li><a class="dropdown-item" href="/pembelianku">Pembelianku</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+                <!-- <li><a href="#" class="fw-bolder"> {{ user_info.username }} </a></li> -->
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if not user_info %}
+        <a href="/home" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/login" class="fw-bolder">Mentor</a></li>
+                <li><a href="/login" class="fw-bolder">Matery</a></li>
+                <li><a href="/login" class="fw-bolder">Forum</a></li>
+                <li><a href="/login" class="fw-bolder">Contact</a></li>
+            </ul>
+
+            <a id="Login" href="/login" class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 fw-bolder">Login</a>
+        </nav>
+        {% endif %}
+
+    </header>
+
+    <section class="dark">
+        <div class="container py-4">
+            <h1 class="h1 text-center" id="pageHeaderTitle">Mentor This Class</h1>
+
+            {% for mentor in mentors %}
+            <article class="postcard dark blue" id="mentorList">
+                <a class="postcard__img_link" href="#">
+                    <img class="postcard__img" src="{{ url_for('static', filename='images/' + mentor['file']) }}"
+                        alt="Image Title" style="width: 300px; height: 300px;" />
+                </a>
+                <div class="postcard__text">
+                    <h1 class="postcard__title blue"><a href="#">{{ mentor['name'] }}</a></h1>
+                    <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                            <i class="fas fa-calendar-alt mr-2"></i>{{ mentor['tanggal_kirim'] }}
+                        </time>
+                    </div>
+                    <div class="postcard__bar"></div>
+                    <div class="postcard__preview-txt">{{ mentor['description'] }}</div>
+                    <ul class="postcard__tagbox">
+                        <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
+                        {% if user_info and user_info.role == 'admin' %}
+                        <form class="delete-form" data-mentor-id="{{ mentor['_id'] }}">
+                            <input type="hidden" name="id" value="{{ mentor['_id'] }}">
+                            <button style="background: transparent;" type="button" class="delete-button"><i
+                                    class="fa-solid fa-recycle fa-2x"></i>delete</button>
+                        </form>
+                        {% endif %}
+                    </ul>
+                </div>
+            </article>
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- ini footer -->
+    {% extends "footer.html" %}
+
+    <!-- ... rest of your HTML code ... -->
+
+    <div id="popup" style="display: none; position: fixed; bottom: 0; right: 0; background: lightblue; padding: 20px;">
+        This is a pop-up!
+    </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/counterup/1.0.0/jquery.counterup.min.js"></script>
+
+</body>
+
+</html>

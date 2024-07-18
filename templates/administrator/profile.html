@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% if is_admin %}Admin{% else %}User{% endif %} Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="../../static/Dashboard.css" />
+    <link rel="stylesheet" href="../../static/Footer.css">
+    <link rel="stylesheet" href="../../static/stylecopy.css">
+    <link rel="stylesheet" href="../../static/styles.css">
+
+    <!-- Bootstrap JS (Popper.js and Bootstrap JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+
+
+        function Update_img() {
+            let name = $('#profile-Name').val();
+            let file = $('#input-pic')[0].files[0];
+            let form_data = new FormData();
+            form_data.append('file_give', file);
+            form_data.append('name_give', name);
+            $.ajax({
+                type: 'POST',
+                url: '/update_admin',
+                data: form_data,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response['result'] === 'success') {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        function logout() {
+            $.removeCookie('mytoken', { path: '/' });
+            alert('Signed out!');
+            window.location.href = "/login";
+        }
+
+        // Panggil fungsi logout saat tombol logout di
+        $(document).ready(function () {
+            $('#logout-button').click(function () {
+                logout();
+            });
+        });
+    </script>
+
+    <style>
+        /* body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        } */
+
+        /* Set a background color for the body */
+        body {
+            background-color: #f8f9fa;
+            height: 80rem;
+        }
+
+        /* Main content styles */
+        #image {
+            max-width: 400px;
+            /* Set the maximum width of the card */
+        }
+
+        .profile-card {
+            padding: 30px;
+            /* Increase the padding for the profile card */
+        }
+
+        .profile-card img {
+            width: 200px;
+            /* Set the width of the profile image */
+            height: 200px;
+            /* Set the height of the profile image */
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            /* Add some space between the image and the card title */
+        }
+
+        .profile-card h4 {
+            font-size: 1.5rem;
+            /* Increase the font size of the card title */
+        }
+
+        .btn-primary {
+            font-size: 1.2rem;
+            /* Increase the font size of the update button */
+        }
+
+
+        /* Footer styles */
+
+
+        /* Modal styles */
+        .modal-dialog {
+            max-width: 400px;
+        }
+
+        .modal-content {
+            padding: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+
+        .profile-container {
+            margin: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header shadow">
+        <div class="logo">
+            <a href="#">{% if is_admin %}Admin{% else %}User{% endif %} Nusa Academy</a>
+        </div>
+        <div class="header-icons" id="profile">
+            <i class="fas fa-bell"></i>
+            <div class="account">
+                <img src="{{ url_for('static', filename=user_data.profile_pic_real)}}" alt="">
+                <h4>{{user_info.username}}</h4>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container profile-container">
+        <nav>
+            <div class="side_navbar">
+                <span href="/">Main Menu</span>
+                <a href="/administrator/dashboard/{{ user_info.username }}" class="active">Dashboard</a>
+                <a href="/" class="active">Home</a>
+                {% if is_admin %}
+                <a href="/administrator/hubungi/{{ user_info.username }}" class="active">Hubungi</a>
+                <div class="links">
+                    {% endif %}
+                    <button onclick="logout()" class="active">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Column -->
+                <div class="card mx-auto" id="image">
+                    <div class="card-body profile-card text-center">
+                        <center class="mt-4">
+                            <img src="{{ url_for('static', filename=user_data.profile_pic_real)}}" class="rounded-circle"
+                                width="150" height="150" />
+                            <h4 class="card-title mt-2" id="profileName">{{user_data.name}}</h4>
+                            <span class="card-title mt-2" id="profileName">@{{user_data.username}}</span>
+                            <br>
+                            <button class="card-title mt-1" id="profileName"><strong>{{user_data.role}}</strong></button>
+                            <br>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#update">Update</button>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+
+    <footer class="bg-dark">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-5">
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="#"> <!--<img src="./New folder/Images/1534080972.svg" alt="">!--> </a>
+                    </div>
+
+                    <p> Nusa Academy is a project developed by Group 5 within Team 7,
+                        involving the collaborative efforts of three individuals.
+                    </p>
+                    <p>&copy; 2023 Group 5. All Rights Reserved.</p>
+
+                    <div class="linelast"></div>
+                    <div>
+                        <a href="#"><i class="ri-instagram-fill"></i></a>
+                        <a href="#"><i class="ri-github-fill"></i></a>
+                        <a href="#"><i class="ri-line-fill"></i></a>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class=" text-white mb-0">Profile</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li> <a href="#">About</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class=" text-white">Project/Work</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li> <a href="#"> Article</a></li>
+                            <li> <a href="#"> Paper</a></li>
+                            <li> <a href="#"> Project Data Analyst</a></li>
+                            <li> <a href="#"> Course</a></li>
+                            <li> <a href="#"> Indepedent Study</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <h5 class=" text-white">Contact</h5>
+                        <div class="line"></div>
+                        <ul>
+                            <li> <a href="#"> Pangkalan Jati Street 1, Cinere,Depok - 089635626892 </a></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+    </footer>
+</body>
+<!-- Add this HTML for the modal at the end of your body tag -->
+<!-- edit The Modal -->
+<div class="modal" id="update">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Baru</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <form method="POST">
+                <div class="modal-body">
+                    <input type="file" id="input-pic" class="file-input" name="resume" />
+                    <br>
+                    <br>
+                    <input type="text" id="profile-Name" name="profile" placeholder="Profile Name" class="form-control">
+                    <br>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveUpdate"
+                        onclick="Update_img()">save</button>
+
+
+                </div>
+            </form>
+
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/counterup/1.0.0/jquery.counterup.min.js"></script>
+
+</html>

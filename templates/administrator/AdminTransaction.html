@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{% if is_admin %}Admin{% else %}User{% endif %} Dashboard</title>
+  <link rel="stylesheet" href="../../static/Dashboard.css" />
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      userCount();
+      fetchNotifications();
+    });
+
+    function userCount() {
+      $.get("/user_count", function (data) {
+        $("#userCount").text(data.user_count);
+      });
+    }
+
+    function logout() {
+      $.removeCookie('mytoken', { path: '/' });
+      alert('Signed out!');
+      window.location.href = "/login";
+    }
+
+    // Panggil fungsi logout saat tombol logout diklik
+    $(document).ready(function () {
+      $('#logout-button').click(function () {
+        logout();
+      });
+    });
+
+    function showNotificationPopover(notifications) {
+      if (notifications.length > 0) {
+        const limitedNotifications = notifications.slice(0, 5);
+        // Generate HTML for notifications with colored cards
+        const notificationsHtml = limitedNotifications.map((notifications, index) => `
+            <div class="card bg-info text-white mb-2">
+                <div class="card-body">
+                    ${notifications}
+                </div>
+            </div>
+        `).join('');
+
+        // Attach a Bootstrap popover to the notification bell icon
+        $("#notificationBell").popover({
+          title: 'New Notifications',
+          content: notificationsHtml,
+          html: true,
+          placement: 'bottom',
+          trigger: 'manual', // Ganti 'otomatis' dengan 'manual' untuk memicu manual
+        });
+
+        // Show the popover
+        $("#notificationBell").popover('show');
+
+        setTimeout(() => {
+          $("#notificationBell").popover('hide');
+        }, 10000);
+
+        // Remove the "has-notifications" class after showing notifications
+        $("#notificationBell").removeClass("has-notifications");
+      }
+    }
+
+
+    // Modify the existing fetchNotifications function to use the showNotificationPopover function
+    function fetchNotifications() {
+      $.get("/fetch_notifications", function (data) {
+        if (data.contact_count > 0 || data.new_user_count > 0) {
+          // Fetch and show detailed notifications when the page loads
+          $.get("/get_notifications", function (notifications) {
+            showNotificationPopover(notifications);
+          });
+        }
+      });
+    }
+
+    // Modify the showNotifications function to use the showNotificationPopover function
+    function showNotifications() {
+      // Fetch and display detailed notifications
+      $.get("/get_notifications", function (notifications) {
+        showNotificationPopover(notifications);
+      });
+    }
+
+    // category = $("#category").val();
+    // if (category) {
+    //   $.get("/get_notifications?category=" + category, function (notifications) {
+    //     showNotificationPopover(notifications);
+    //   });
+    // }
+
+  </script>
+  <style>
+    #notificationBell.has-notifications {
+      color: red;
+      /* or any other color to indicate new notifications */
+      cursor: pointer;
+      /* Add a pointer cursor to indicate it's clickable */
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header class="header shadow">
+    <div class="logo">
+      <a href="#">{% if is_admin %}Admin{% else %}User{% endif %} Nusa Academy</a>
+    </div>
+    <div class="header-icons">
+      <i class="fas fa-bell" id="notificationBell" onclick="showNotifications()"></i>
+      <div class="account">
+        <img src="{{ url_for('static', filename=user_data.profile_pic_real)}}" alt="">
+        <h4>{{user_info.username}}</h4>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <nav>
+      <div class="side_navbar">
+        <span href="/">Main Menu</span>
+        <a href="/administrator/dashboard/{{ user_info.username }}" class="active">Dashboard</a>
+        <a href="/" class="active">Home</a>
+        {% if is_admin %}
+        <a href="/administrator/profile/{{ user_info.username }}" class="active">Profile</a>
+        <a href="/administrator/hubungi/{{ user_info.username }}" class="active">Hubungi</a>
+        <a href="/administrator/transaksi/{{ user_info.username }}" class="active">Transaksi</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#addMentorModal">Tambah Mentor</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#addClassModal">Tambah Kelas</a>
+        <div class="links">
+          {% endif %}
+          <button onclick="logout()" class="active">Logout</button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main-body">
+      <h2>Dashboard</h2>
+      <div class="promo_card">
+        <h1>Welcome Admin {{user_info.username}}</h1>
+        <span>Lorem ipsum dolor sit amet.</span>
+        <button>Learn More</button>
+      </div>
+
+      <div class="history_lists">
+        <div class="list1">
+          <div class="row">
+            <h4 style="margin: 10px;padding: 5px;">History Pembayaran User</h4>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Dates</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Transaksi_id</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for transaction in transactions %}
+              <tr>
+                <td>{{loop.index}} </td>
+                <td>{{transaction.transaction_date}} </td>
+                <td>{{transaction.penerima}}</td>
+                <td>{{transaction.category}}</td>
+                <td>{{transaction._id}}</td>
+                <td>
+                  <form action="{{ url_for('accept_transaction', transaction_id=transaction._id) }}" method="post">
+                      {% if transaction['status'] == "True" %}
+                      <button type="submit" class="btn btn-primary" disabled>Selesai</button>
+                      {% else %}
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      {% endif %}
+
+                    
+                  </form>
+                </td>
+
+              </tr>
+
+              {% endfor %}
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+
+
+
+
+
+
+      <!-- <div class="sidebar">
+      <h4>User Transaction</h4>
+      <div class="balance">
+        <i class="fas fa-user-check icon"></i>
+        <div class="info">
+          <h5>User</h5>
+          <span id="userCount"></span>
+        </div>
+      </div>
+    </div> -->
+
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addMentorModal" tabindex="-1" aria-labelledby="addMentorModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addMentorModalLabel">Tambah Mentor</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/mentor_kami" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="mentorName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="mentorName" name="name">
+              </div>
+              <div class="mb-3">
+                <label for="mentorFile" class="form-label">File</label>
+                <input type="file" class="form-control" id="mentorFile" name="file">
+              </div>
+              <div class="mb-3">
+                <label for="mentorDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="mentorDescription" rows="3" name="description"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addClassModal" tabindex="-1" aria-labelledby="addClassModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addClassModalLabel">Tambah Kelas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/tambah_kelas" method="post" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="className" class="form-label">Nama Kelas</label>
+                <input type="text" class="form-control" id="className" name="nama_kelas">
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category Kelas</label>
+                <!-- <input type="text" class="form-control" id="className" name="nama_kelas"> -->
+                <select id="category" class="form-select" aria-label="Default select example" required name="category">
+                  <option value="Front-end">Front-end</option>
+                  <option value="Back-end">Back-end</option>
+                  <option value="Fullstack">Fullstack</option>
+              </div>
+              <div class="mb-3">
+                <label for="classFile" class="form-label">Gambar Kelas</label>
+                <input type="file" class="form-control" id="classFile" name="gambar_kelas">
+              </div>
+              <div class="mb-3">
+                <label for="classDescription" class="form-label">Deskripsi Kelas</label>
+                <textarea class="form-control" id="classDescription" rows="3" name="deskripsi_kelas"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="classPrice" class="form-label">Harga Kelas</label>
+                <input type="number" class="form-control" id="classPrice" name="harga_kelas">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>
+</span>

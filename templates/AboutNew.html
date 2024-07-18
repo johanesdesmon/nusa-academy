@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nusa Academy </title>
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+  <link rel="icon" type="image/png" sizes="16x16"
+        href="../static/images/ncc.png">
+    <link rel="stylesheet" href="../static/stylecopy.css">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/Footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="../static/about.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="../static/Homescript.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="../static/Myhome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+        $(document).ready(function () {
+            $('.read-more-btn').on('click', function () {
+                $(this).prev('.description').toggleClass('expanded');
+                $(this).toggleClass('less');
+            });
+        });
+        //initialize wow.js
+        document.addEventListener('DOMContentLoaded', function () {
+            new WOW().init();
+            console.log('wow.js initialized');
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Bootstrap components
+            var dropdownTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+            var dropdownList = dropdownTriggerList.map(function (dropdownTriggerEl) {
+                return new bootstrap.Dropdown(dropdownTriggerEl);
+            });
+        });
+
+
+        $(document).ready(function () {
+            $(".hero__slider").owlCarousel({
+                items: 1,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 3000, // 3 seconds
+                autoplayHoverPause: true
+            });
+        });
+
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+        * {
+            font-family: 'Play', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        /* Define the slide-in animation */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the slide-in animation to each box */
+        .box {
+            animation: slideIn 4s ease-out;
+            /* Adjust the duration and timing function as needed */
+        }
+
+        .content,
+        .btn {
+            animation: slideIn 2s ease-out;
+        }
+
+        /* Gaya normal */
+        .btn-primary-gradient {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #fff;
+        }
+
+        /* Gaya hover */
+        .btn-primary-gradient:hover {
+            background: #fff;
+            color: #fff
+        }
+
+        /* Ukuran font tambahan */
+        .btn-primary-gradient {
+            font-size: 18px;
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+        }
+
+        body {
+            height: 80rem;
+            background: #fff;
+        }
+
+        .text-dark {
+            text-decoration: none;
+        }
+
+        .card {
+            margin: 10px;
+        }
+
+        .judul {
+            margin-top: 10rem;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900|Open Sans:400,600,800');
+
+        :root {
+            --main-red-rgb-015: rgba(189, 21, 11, 0.1);
+            --main-black: #110f16;
+            --gradient: linear-gradient(to right, var(--main-black), var(--main-red-rgb-015));
+            --gradient1: linear-gradient(to right, var(--main-red-rgb-015), var(--main-black));
+            --background-image: linear-gradient(30deg, var(--main-blue-rgb-015), transparent 50%);
+            --main-red-rgb-015: rgba(189, 21, 11, 0.1);
+            --dark: #110f16;
+        }
+
+        .container-fluid,
+        .container {
+            max-width: 1200px;
+        }
+
+        .card-container {
+            padding: 100px 0px;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        .profile-card-1 {
+            background-color: #FFF;
+            border-radius: 10px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            background-image: url(../img/profile-bg-1.jpg);
+            background-position: center;
+            padding-top: 100px;
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            max-width: 300px;
+        }
+
+        .profile-card-1 .profile-content {
+            position: relative;
+            background-color: #FFF;
+            padding: 70px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .profile-card-1 .profile-img {
+            position: absolute;
+            height: 100px;
+            left: 0px;
+            right: 0px;
+            z-index: 10;
+            top: -50px;
+            transition: all 0.25s linear;
+            transform-style: preserve-3d;
+        }
+
+        .profile-card-1 .profile-img img {
+            height: 100px;
+            margin: auto;
+            border-radius: 50%;
+            border: 5px solid #FFF;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-card-1 .profile-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #021830;
+        }
+
+        .profile-card-1 .profile-address {
+            color: #777;
+            font-size: 12px;
+            margin: 0px 0px 15px 0px;
+        }
+
+        .profile-card-1 .profile-description {
+            font-size: 13px;
+            padding: 5px 10px;
+            color: #777;
+        }
+
+        .profile-card-1 .profile-icons .fa {
+            margin: 5px;
+            color: #777;
+        }
+
+        .profile-card-1:hover {
+            box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-card-1:hover .profile-img {
+            transform: rotateY(180deg);
+        }
+
+        .profile-card-2 {
+            max-width: 300px;
+            background-color: #FFF;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            background-position: center;
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .profile-card-2 img {
+            transition: all linear 0.25s;
+        }
+
+        .profile-card-2 .profile-name {
+            position: absolute;
+            left: 30px;
+            bottom: 70px;
+            font-size: 30px;
+            color: #FFF;
+            text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            transition: all linear 0.25s;
+        }
+
+        .profile-card-2 .profile-icons {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: #FFF;
+            transition: all linear 0.25s;
+        }
+
+        .profile-card-2 .profile-username {
+            position: absolute;
+            bottom: 50px;
+            left: 30px;
+            color: #FFF;
+            font-size: 13px;
+            transition: all linear 0.25s;
+        }
+
+        .profile-card-2 .profile-icons .fa {
+            margin: 5px;
+        }
+
+        .profile-card-2:hover img {
+            filter: grayscale(100%);
+        }
+
+        .profile-card-2:hover .profile-name {
+            bottom: 80px;
+        }
+
+        .profile-card-2:hover .profile-username {
+            bottom: 60px;
+        }
+
+        .profile-card-2:hover .profile-icons {
+            right: 40px;
+        }
+
+        .profile-card-3 {
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            padding: 25px 15px;
+        }
+
+        .profile-card-3 .profile-name {
+            font-weight: bold;
+            color: #21304e;
+        }
+
+        .profile-card-3 .profile-location {
+            color: #999;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .profile-card-3 img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            margin: 10px auto;
+            border-radius: 50%;
+            transition: all linear 0.25s;
+        }
+
+        .profile-card-3 .profile-description {
+            font-size: 13px;
+            color: #777;
+            padding: 10px;
+        }
+
+        .profile-card-3 .profile-icons {
+            margin: 15px 0px;
+        }
+
+        .profile-card-3 .profile-icons .fa {
+            color: #fe455a;
+            margin: 0px 5px;
+        }
+
+        .profile-card-3:hover img {
+            height: 110px;
+            width: 110px;
+            margin: 5px auto;
+        }
+
+        .profile-card-4 {
+            max-width: 300px;
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .profile-card-4 img {
+            transition: all 0.25s linear;
+        }
+
+        .profile-card-4 .profile-content {
+            position: relative;
+            padding: 15px;
+            background-color: #FFF;
+        }
+
+        .profile-card-4 .profile-name {
+            font-weight: bold;
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: -70px;
+            color: #FFF;
+            font-size: 17px;
+        }
+
+        .profile-card-4 .profile-name p {
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+        }
+
+        .profile-card-4 .profile-description {
+            color: #777;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        .profile-card-4 .profile-overview {
+            padding: 15px 0px;
+        }
+
+        .profile-card-4 .profile-overview p {
+            font-size: 10px;
+            font-weight: 600;
+            color: #777;
+        }
+
+        .profile-card-4 .profile-overview h4 {
+            color: #273751;
+            font-weight: bold;
+        }
+
+        .profile-card-4 .profile-content::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            top: -10px;
+            left: 0px;
+            right: 0px;
+            background-color: #FFF;
+            z-index: 0;
+            transform: skewY(3deg);
+        }
+
+        .profile-card-4:hover img {
+            transform: rotate(5deg) scale(1.1, 1.1);
+            filter: brightness(110%);
+        }
+
+        .profile-card-5 {
+            max-width: 300px;
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            padding: 50px 15px 25px 15px;
+        }
+
+        .profile-card-5 img {
+            height: 100px;
+            width: 100px;
+            object-fit: cover;
+            margin: 10px auto;
+            border-radius: 50%;
+            transition: all linear 0.25s;
+            position: relative;
+        }
+
+        .profile-card-5::before {
+            content: "";
+            position: absolute;
+            top: -60px;
+            right: 0px;
+            left: 0px;
+            height: 170px;
+            background-color: #4fb96e;
+            transform: skewY(-20deg);
+        }
+
+        .profile-card-5 .profile-name {
+            padding-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .profile-card-5 .profile-designation {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .profile-card-3 .profile-location {
+            color: #999;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .profile-card-5 .profile-description {
+            font-size: 13px;
+            color: #777;
+            padding: 10px;
+        }
+
+        .profile-card-5 .profile-overview {
+            padding: 15px 0px;
+        }
+
+        .profile-card-5 .profile-overview p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .profile-card-5 .profile-overview h2 {
+            font-weight: bold;
+            color: #1e2832;
+        }
+
+        .profile-card-5 .profile-icons .fa {
+            margin: 7px;
+            color: #4fb96e;
+        }
+
+        .profile-card-5:hover img {
+            transform: rotate(-5deg);
+        }
+
+        .profile-card-6 {
+            max-width: 300px;
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .profile-card-6 img {
+            transition: all 0.15s linear;
+        }
+
+        .profile-card-6 .profile-name {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 25px;
+            font-weight: bold;
+            color: #FFF;
+            padding: 15px 20px;
+            background: linear-gradient(140deg, rgba(0, 0, 0, 0.4) 50%, rgba(255, 255, 0, 0) 50%);
+            transition: all 0.15s linear;
+        }
+
+        .profile-card-6 .profile-position {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.4);
+            left: 30px;
+            top: 100px;
+            transition: all 0.15s linear;
+        }
+
+        .profile-card-6 .profile-overview {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 50%, rgba(255, 255, 0, 0));
+            color: #FFF;
+            padding: 50px 0px 20px 0px;
+            transition: all 0.15s linear;
+        }
+
+        .profile-card-6 .profile-overview h3 {
+            font-weight: bold;
+        }
+
+        .profile-card-6 .profile-overview p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .profile-card-6:hover img {
+            filter: brightness(80%);
+        }
+
+        .profile-card-6:hover .profile-name {
+            padding-left: 25px;
+            padding-top: 20px;
+        }
+
+        .profile-card-6:hover .profile-position {
+            left: 40px;
+        }
+
+        .profile-card-6:hover .profile-overview {
+            padding-bottom: 25px;
+        }
+
+        .profile-card-7 {
+            background-color: #FFF;
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+
+        .profile-card-7 .profile-content {
+            padding: 60px 30px 30px 30px;
+            background-color: #FFF;
+            position: relative;
+        }
+
+        .profile-card-7 .profile-content img {
+            position: absolute;
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            top: -40px;
+            border: 5px solid #FFF;
+        }
+
+        .profile-card-7 .profile-content .profile-name {
+            position: absolute;
+            font-size: 17px;
+            font-weight: bold;
+            top: -35px;
+            left: 125px;
+            color: #FFF;
+        }
+
+        .profile-card-7 .profile-overview {
+            padding: 5px 0px;
+        }
+
+        .profile-card-7 .profile-overview p {
+            color: #777;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .profile-card-7 .profile-overview h5 {
+            color: #142437;
+            font-weight: bold;
+        }
+
+        .profile-card-8 {
+            background: linear-gradient(#09121c, #36445a);
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            transition: all 0.25s linear;
+        }
+
+        .profile-card-8 .profile-name {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 25px;
+            color: #58d683;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .profile-card-8 .profile-designation {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 50px;
+            color: #FFF;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .profile-card-8 .profile-icons {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            top: 80px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .profile-card-8 .profile-icons .fa {
+            margin: 5px;
+        }
+
+        .profile-card-8:hover {
+            transform: scale(1.05, 1.05);
+        }
+
+        .profile-card-9 {
+            border-radius: 10px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            padding: 30px 15px;
+            background-color: #FFF;
+            transition: all 0.25s linear;
+        }
+
+        .profile-card-9 img {
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+            margin: 10px auto;
+        }
+
+        .profile-card-9 .profile-name {
+            font-size: 15px;
+            color: #3249b9;
+            font-weight: 600;
+        }
+
+        .profile-card-9 .profile-designation {
+            font-size: 13px;
+            color: #777;
+        }
+
+        .profile-card-9 .profile-description {
+            padding: 10px;
+            font-size: 13px;
+            color: #777;
+            margin: 15px 0px;
+            background-color: #F1F2F3;
+            border-radius: 5px;
+        }
+
+        .profile-card-9 a {
+            padding: 10px 15px;
+            background-color: #3249b9;
+            color: #FFF;
+            font-size: 11px;
+            border-radius: 25px;
+        }
+
+        .profile-card-9:hover {
+            transform: scale(1.05, 1.05);
+        }
+
+        .profile-card-10 {
+            border-radius: 5px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            padding: 30px 15px;
+            background-color: #1f2124;
+            color: #EEE;
+        }
+
+        .profile-card-10 img {
+            margin: 10px auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 10px solid transparent;
+            box-shadow: 0px 0px 0px 2px #64c17b;
+            transition: all 0.25s linear;
+        }
+
+        .profile-card-10 .profile-name {
+            color: #FFF;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .profile-card-10 .profile-location {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .profile-card-10 .profile-description {
+            padding: 10px;
+            font-size: 13px;
+        }
+
+        .profile-card-10 .profile-icons .fa {
+            color: #ffc75e;
+            margin: 10px;
+        }
+
+        .profile-card-10:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <header>
+        {% if user_info and user_info.role == 'admin' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item"
+                                href="/administrator/dashboard/{{ user_info.username }}">Dashboard</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if user_info and user_info.role == 'member' %}
+        <a href="/" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/mentor" class="fw-bolder">Mentor</a></li>
+                <li><a href="/materi" class="fw-bolder">Matery</a></li>
+                <li><a href="/forum/{{ user_info.username }}" class="fw-bolder">Forum</a></li>
+                <li><a href="/hubungi_kami" class="fw-bolder">Contact</a></li>
+                <div class="dropdown-menu-nav nav-dropdown">
+                    <a class="navbar-brand dropdown-toggle" href="#" role="button" id="userDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
+                        {{ user_info.username }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown" style="background: transparent;">
+                        <li><a class="dropdown-item" href="/profil/{{ user_info.username }}">Pengaturan Profil</a></li>
+                        <li><a class="dropdown-item" href="/pembelianku">Pembelianku</a></li>
+                        <li><a id="logout-button" class="dropdown-item" onclick="logout()" href="#">Logout</a></li>
+                    </ul>
+
+                </div>
+                <!-- <li><a href="#" class="fw-bolder"> {{ user_info.username }} </a></li> -->
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% if not user_info %}
+        <a href="/home" class="logo">
+            <img src="../static/images/ncc.png" alt="Logo">
+        </a>
+        <div id="menu-bar" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul id="nav-links" class="nav-links">
+                <li><a href="/" class="fw-bolder">Home</a></li>
+                <li><a href="/about" class="fw-bolder">About</a></li>
+                <li><a href="/login" class="fw-bolder">Mentor</a></li>
+                <li><a href="/login" class="fw-bolder">Matery</a></li>
+                <li><a href="/login" class="fw-bolder">Forum</a></li>
+                <li><a href="/login" class="fw-bolder">Contact</a></li>
+            </ul>
+
+            <a id="Login" href="/login"
+                class="btn btn-primary-gradient py-sm-3 px-4 px-sm-5 fw-bolder">Login</a>
+        </nav>
+        {% endif %}
+
+    </header>
+
+
+
+    <section class="home" id="home">
+
+        <video autoplay muted loop plays-inline class="back-video">
+            <source src="../static/images/backdrop.mp4">
+        </video>
+        <section style="background: transparent;">
+            <div class="container">
+                <h4 class="text-center" style="color: white; font-size: 5rem;"><strong>Profil Nusa Computer</strong></h4>
+                <hr>
+                <hr>
+                <div class="row">
+                            <div class="text-center">
+                                <video width="100%" controls>
+                                    <source src="../static/images/nusa.mp4" type="video/mp4">
+                                    Browser Anda tidak mendukung tag video.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+    </section>
+  
+  
+
+
+
+    <!-- ini footer -->
+    {% extends "footer.html" %}
+
+    <!-- ... rest of your HTML code ... -->
+
+    <div id="popup" style="display: none; position: fixed; bottom: 0; right: 0; background: lightblue; padding: 20px;">
+        This is a pop-up!
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/counterup/1.0.0/jquery.counterup.min.js"></script>
+
+</body>
+
+</html>
